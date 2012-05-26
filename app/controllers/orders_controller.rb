@@ -7,6 +7,9 @@ class OrdersController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @orders }
+      format.pdf do
+        render :pdf => "orders", :layout => false, :template => '/orders/index.html'
+      end
     end
   end
 

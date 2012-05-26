@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TexBills</title>
+  <%= wicked_pdf_stylesheet_link_tag    "application" %>
+  <%= wicked_pdf_stylesheet_link_tag    "order" %>
+  <%= wicked_pdf_javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+<h1>Listing orders</h1>
+
+<table class="bill">
+  <tr>
+    <th>Item name</th>
+    <th>Item price</th>
+    <th>Item num</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.item_name %></td>
+    <td><%= order.item_price %></td>
+    <td><%= order.item_num %></td>
+    <td><%= link_to 'Show', order %></td>
+    <td><%= link_to 'Edit', edit_order_path(order) %></td>
+    <td><%= link_to 'Destroy', order, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+Total Price : <%= h @total_price %><br />
+
+<%= link_to 'New Order', new_order_path %>
+
+</body>
+</html>

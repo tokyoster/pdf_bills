@@ -4,6 +4,8 @@ class OrdersController < ApplicationController
   def index
     @orders = Order.all
 
+    @total_price=@orders.sum{|o|o.item_num*o.item_price}
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @orders }
